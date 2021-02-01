@@ -27,7 +27,9 @@ phases:
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
         - pip install -r requirements.txt
-        - python -m pytest test_main.py 
+        - python -m pytest test_main.py
+        - echo Logging in to Docker Hub...
+        - echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin  
 
   build:
     commands:
